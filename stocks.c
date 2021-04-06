@@ -4,13 +4,12 @@
 struct firme{
 	int actual;
 	int pierderi;  // actual - minim
-	int profit;  //maxim - actual
+	int profit;  // maxim - actual
 };
 
 int max(int a, int b) { return (a > b) ? a : b; }
 
-int knapSack(int buget, int pierderi, struct firme *a, int n)
-{
+int knapSack(int buget, int pierderi, struct firme *a, int n) {
 	//  int W, int wt[], int val[], int n
 	if (n == 0 || buget == 0 || pierderi == 0)
 		return 0;
@@ -25,7 +24,8 @@ int knapSack(int buget, int pierderi, struct firme *a, int n)
 			knapSack(buget, pierderi, a, n - 1));
 }
 
-int main(){
+
+int main() {
 	FILE *f, *g;
 	f = fopen("stocks.in", "r");
 	g = fopen("stocks.out", "w");
