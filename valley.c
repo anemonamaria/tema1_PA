@@ -49,7 +49,6 @@ int main(int argc, char const *argv[]) {
 		fprintf(g, "%lld\n", excavat);
 	}
 
-	printf("\n");
 	fclose(f);
 	fclose(g);
 	return 0;

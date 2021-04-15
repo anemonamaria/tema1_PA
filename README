@@ -1,0 +1,58 @@
+MORARU ANEMONA - MARIA
+323CC
+Proiectarea algoritmilor
+Tema 1 ~Gigel si muntele de bani~
+Aprilie 2021
+
+
+- descriere solutii, complexitate si alte lucruri
+
+
+Problema 1:
+
+Pentru aceasta problema am construit o in care am retinut pentru fiecare intrare
+numarul criptomonedelor si costul lor. In timp ce scanez fisierul retin minimul
+de criptomonede care pot fi minate de un calculator din lista. Folosesc functia
+qsort() pentru a sorta crescator calculatoarele in functie de numarul
+criptomonedelor pentru a facilita complexitatea problemei. Folosim un while
+in care verificam daca costul unei parcurgeri complete a calculatoarelor (in
+care adaugam cate un calculator in plus pentru fiecare index care are numarul
+criptomonedelor mai mic decat auxiliarul folosit) este mai mic decat banii de
+care dispunem.
+Complexitatea problemei este O(log N) datorita sortarii si conditiei while-ului
+in functie de cost.
+
+
+Problema 2:
+
+Si aici am creat o structura in care retin valoarea curenta, profitul obtinut
+pentru o actiune precum si pierderea acesteia. Aceasta problema a fost tratata
+din punctul de vedere al programarii dinamice. Am folosit bine cunoscuta problema
+Knapsack pe care am actualizat-o la cerintele problemei noastre. Aceasta este
+o functie iterativa, tri-dimensionala.
+Complexitatea problemei este O(NBL) datorita celor 3 functii for din interiorul
+functiei kanpsack3D.
+
+
+Problema 3:
+
+In momentul in care citesc din fisier input-urile problemei, caut cea mai mica
+inaltime pe care o are valea respectiva si retin pentru aceasta valoare indexul
+de start, numarul aparitiilor, precum si ultima aparitie a acesteia. In cazul
+in care prima si ultima aparitie nu coincid, excavez din start toate varfurile
+dintre acesti indecsi pentru a forma valea. Pornesc cu 2 for-uri, unul de la
+inceput spre prima aparitie al minimului si altul de la final catre ultima
+aparitie al minimului in care verific daca valoarea precedenta este mai mare
+decat cea curenta, in caz afirmativ aduc varfurile la acelasi nivel.
+Complexitatea problemei este O(N) din cauza parcurgrii rand pe rand a fisierului
+de intrare.
+
+
+Problema 4:
+
+Aceasta problema a fost abordata din punctul de vedere al programarii dinamice.
+Ideea pentru aceasta problema este inspirata din rezovarea problemei 2. Aici
+calculez progresiv costul in cazul in care un munte trebuie excavat o data, de
+doua ori sau niciodata pentru a afla in final costul minim.
+Complexitatea problemei este O(N*3) din cauza celor 2 for-uri in care caut costul
+minim.

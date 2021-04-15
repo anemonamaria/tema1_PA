@@ -6,7 +6,7 @@ struct pcs{
 	int cost;  // pretul calculatorului
 };
 
-int cmpf(const void *x1, const void *x2) {
+int comp(const void *x1, const void *x2) {
 	const struct pcs *pa =  x1;
 	const struct pcs *pb =  x2;
 	/*sortez crescator dupa nrCrypto si descrescator dupa cost*/
@@ -31,7 +31,8 @@ int main(int argc, char const *argv[]) {
 		if (min > a[i].nrCrypto)
 			min = a[i].nrCrypto;
 	}
-	qsort(a, n, sizeof(struct pcs), cmpf);
+	qsort(a, n, sizeof(struct pcs), comp);
+
 	int aux = min;
 	i = 0;
 	while(cost <= bani) {

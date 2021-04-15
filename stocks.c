@@ -7,21 +7,34 @@ struct firme{
 	int profit;  // maxim - actual
 };
 
-int max(int a, int b) { return (a > b) ? a : b; }
+int max(int a, int b) {
+	if (a > b)
+		return a;
+	return b;
+}
 
-int knapSack(int buget, int pierderi, struct firme *a, int n) {
-	//  int W, int wt[], int val[], int n
-	if (n == 0 || buget == 0 || pierderi == 0)
-		return 0;
-	if (a[n-1].pierderi >= pierderi || a[n - 1].actual > buget)
-		return knapSack(buget, pierderi, a, n - 1);
+int knapsack3D(struct firme *a, int n, int buget, int pierderi) {
+	int ***profit = (int ***) calloc(n + 1, sizeof(int **));
+	for (int i = 0; i <= n; i++) {
+		profit[i] = (int **) calloc(buget + 1, sizeof(int *));
+		for (int j = 0; j <= buget; j++) {
+			profit[i][j] = (int *) calloc(pierderi + 1, sizeof(int));
+		}
+	}
 
-	else
-		return max(
-			a[n - 1].profit
-				+ knapSack(buget - a[n - 1].actual,
-						pierderi - a[n - 1].pierderi, a, n - 1),
-			knapSack(buget, pierderi, a, n - 1));
+	for (int i = 1; i <= n; i ++) {
+		for (int j = 1; j <= buget; j++) {
+			for (int k = 1; k <= pierderi; k++) {
+				if((j >= a[i-1].actual) && (k >= a[i-1].pierderi))
+					profit[i][j][k] = max(profit[i-1][j][k],
+						profit[i-1][j-a[i-1].actual][k-a[i-1].pierderi] + a[i-1].profit);
+				else
+					profit[i][j][k] = profit[i-1][j][k];
+			}
+		}
+	}
+
+	return profit[n][buget][pierderi];
 }
 
 
@@ -37,10 +50,10 @@ int main() {
 	for (i = 0; i < n; i++) {
 		fscanf(f, "%d %d %d", &a[i].actual, &b, &c);
 		a[i].profit = c - a[i].actual;
-		a[i].pierderi = b - a[i].actual;
+		a[i].pierderi = a[i].actual - b;
 	}
 
-	fprintf(g, "%d", knapSack(buget, pierderi, a, n));
+	fprintf(g, "%d", knapsack3D(a, n, buget, pierderi));
 
 	fclose(f);
 	fclose(g);
